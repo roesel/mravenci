@@ -76,17 +76,17 @@ pole_tycinek = []       # Dvourozměrné pole
 pole_mravencu = []      # Jednorozěrné pole
 
 # Rozměry pole
-x_max=10
-y_max=10
+x_max=15
+y_max=15
 
 # Parametry simulace
-pocet_mravencu = 5
-pocet_tycinek =400
+pocet_mravencu = 10
+pocet_tycinek = 40
 pocet_obrazku_tycinek = 3
-fps = 40
-sirka_okna = 500
-vyska_okna = 500
-save = False
+fps = 30
+sirka_okna = 600
+vyska_okna = 600
+save = True
 
 # Generuji mravence a jejich souřadnice
 for a in range(0,pocet_mravencu):
@@ -102,7 +102,7 @@ for radek in pole_tycinek:
         radek.append(0)
 
 # Náhodně rozsypávám tyčinky  
-for tycinka in range(0,pocet_tycinek+1):
+for tycinka in range(0,pocet_tycinek):
     sloupec = randint(0,y_max-1)
     radek = randint(0,x_max-1)
     pole_tycinek[sloupec][radek]+=1
@@ -115,7 +115,7 @@ fps_clock = pygame.time.Clock()
 window = pygame.display.set_mode((sirka_okna, vyska_okna)) 
 
 # Nastavuji mu popisek
-pygame.display.set_caption('Ant Simulator') 
+pygame.display.set_caption('Simulátor pohybu mravenců') 
 
 # Nastavuji ikonku okna
 o = pygame.image.load(os.path.join('data/bigant.png')).convert_alpha()
