@@ -81,9 +81,9 @@ y_max=10
 
 # Parametry simulace
 pocet_mravencu = 5
-pocet_tycinek = 12
+pocet_tycinek =400
 pocet_obrazku_tycinek = 3
-fps = 6
+fps = 40
 sirka_okna = 500
 vyska_okna = 500
 save = False
@@ -127,7 +127,7 @@ stick_surface_object = []
 for a in range (0,pocet_obrazku_tycinek):
     raw_surface_object.append(pygame.image.load(os.path.join('data/bigstick'+str(a)+'.png')).convert_alpha())
 for a in range (0,pocet_tycinek):
-    o = pygame.transform.rotate(raw_surface_object[a%pocet_obrazku_tycinek], ((180/pocet_tycinek)*3*a))
+    o = pygame.transform.rotate(raw_surface_object[a%pocet_obrazku_tycinek], ((180/19)*3*a))
     o = pygame.transform.smoothscale(o, ((sirka_okna-30)/x_max, (vyska_okna-30)/y_max))
     stick_surface_object.append(o)
     
@@ -144,7 +144,7 @@ while True:
         for sloupec in radek:
             if sloupec > 0:
                 for a in range(0,sloupec):
-                    window.blit(stick_surface_object[a%pocet_tycinek], (s*(sirka_okna/(x_max+1)), r*(vyska_okna/(y_max+1))))
+                    window.blit(stick_surface_object[a%pocet_tycinek], ((s-1)*(sirka_okna/(x_max)), (r-1)*(vyska_okna/(y_max))))
             s+=1
         s=1
         r+=1    
@@ -178,11 +178,11 @@ while True:
         i+=1
         
     for event in pygame.event.get(): 
-       if event.type == pygame.QUIT: 
-           sys.exit(0) 
-       else: 
-           pass
-           #print event 
+        if event.type == pygame.QUIT: 
+            sys.exit(0) 
+        else: 
+            pass
+            #print event 
 
     pygame.display.update()
     fps_clock.tick(fps)
