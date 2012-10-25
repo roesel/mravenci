@@ -113,7 +113,15 @@ fps_clock = pygame.time.Clock()
 
 # Vyrábím pygame okno
 window = pygame.display.set_mode((sirka_okna, vyska_okna)) 
-pygame.display.set_caption('Ant Simulator') # Nastavuji mu popisek
+
+# Nastavuji mu popisek
+pygame.display.set_caption('Ant Simulator') 
+
+# Nastavuji ikonku okna
+o = pygame.image.load(os.path.join('data/bigant.png')).convert_alpha()
+o = pygame.transform.rotate(o, 45)
+o = pygame.transform.smoothscale(o, (30, 30))
+pygame.display.set_icon(o)
 
 white_color = pygame.Color(255, 255, 255)
 
@@ -122,6 +130,7 @@ for i in range(0,4):
     o = pygame.image.load(os.path.join('data/bigant.png')).convert_alpha()
     o = pygame.transform.smoothscale(o, ((sirka_okna-30)/x_max, (vyska_okna-30)/y_max))
     ant_surface_object.append(pygame.transform.rotate(o, i*90))
+
 raw_surface_object = []
 stick_surface_object = []
 for a in range (0,pocet_obrazku_tycinek):
