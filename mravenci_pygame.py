@@ -8,6 +8,7 @@ import pygame
 from pygame.locals import *
 from random import randint
 
+
 randomlist = []
 firstposrand = randint(0, 9999)
 lastposrand = firstposrand
@@ -24,7 +25,7 @@ f.close()  # Soubor nezapomenu zavřít
 def cislo_na_radku(cislo):
     global pocet_nahodnych_cisel
     max = pocet_nahodnych_cisel
-    index = cislo-(max*int(cislo/max))
+    index = cislo - (max*int(cislo/max))
     return randomlist[index]
 
 
@@ -35,28 +36,28 @@ def nahodne_cislo():
 
 
 # Definice třídy mravence
-class mravenec:
+class Mravenec:
     def __init__(self, x, y):
-        ''' Konstruktor, mravenec dostane souřadnice narození. '''
+        '''Konstruktor, mravenec dostane souřadnice narození.'''
         self.x = x
         self.y = y
         self.ma_tycinku = False
 
     def rekni_pozici(self):
-        ''' Mravenec vrátí svojí aktuální pozici. '''
-        return([self.x, self.y])
+        '''Mravenec vrátí svojí aktuální pozici.'''
+        return [self.x, self.y]
 
     def rekni_pozici_x(self):
-        ''' Mravenec vrátí svojí aktuální pozici X '''
-        return(self.x)
+        '''Mravenec vrátí svojí aktuální pozici X.'''
+        return self.x
 
     def rekni_pozici_y(self):
-        ''' Mravenec vrátí svojí aktuální pozici Y '''
-        return(self.y)
+        '''.Mravenec vrátí svojí aktuální pozici Y.'''
+        return self.y
 
     def soused(self, coords, smer):
-        ''' Vrací vedlejší poličko z aktuálních souřadnic [coords]
-            ve směru [smer]. (Zajišťuje zacyklování pole.) '''
+        '''Vrací vedlejší poličko z aktuálních souřadnic [coords]
+           ve směru [smer]. (Zajišťuje zacyklování pole.)'''
         x = coords[0]
         y = coords[1]
         if smer == "d":
@@ -75,10 +76,11 @@ class mravenec:
             if x == x_max:
                 x = 0
             x += 1
+
         return [x, y]
 
     def pohni_se(self):
-        ''' Nechá mravence udělat jeden krok pseudonáhodným směrem. '''
+        '''Nechá mravence udělat jeden krok pseudonáhodným směrem.'''
         smer = nahodne_cislo()
         smery = ["u", "d", "l", "r"]
         newc = self.soused(self.rekni_pozici(), smery[smer])
@@ -87,7 +89,7 @@ class mravenec:
         self.uvazuj_nad_tycinkou()
 
     def uvazuj_nad_tycinkou(self):
-        ''' Řeší mravencovu interakci s kupičkou tyčinek, kterou (ne)našel. '''
+        '''Řeší mravencovu interakci s kupičkou tyčinek, kterou (ne)našel.'''
         pozice = self.rekni_pozici()
         tycinky_tady = pole_tycinek[pozice[1]-1][pozice[0]-1]
 
@@ -158,9 +160,13 @@ white_color = pygame.Color(255, 255, 255)
 ant_surface_object = []
 for i in range(0, 4):
     o = pygame.image.load(os.path.join('data/bigant.png')).convert_alpha()
-    o = pygame.transform.smoothscale(o,
-        ((sirka_okna-30)/x_max, (vyska_okna-30)/y_max)
-    )
+    o = pygame.transform.smoothscale(
+            o,
+            ((sirka_okna-30)/x_max, (vyska_okna-30)/y_max)
+        )
+    #o = pygame.transform.smoothscale(o,
+    #                                 ((sirka_okna-30)/x_max, (vyska_okna-30)/y_max)
+    #                                )
     ant_surface_object.append(pygame.transform.rotate(o, i*90))
 
 raw_surface_object = []
@@ -173,11 +179,14 @@ for a in range(0, pocet_obrazku_tycinek):
     )
 for a in range(0, pocet_tycinek):
     o = pygame.transform.rotate(
-        raw_surface_object[a % pocet_obrazku_tycinek], ((180/19)*3*a)
-    )
-    o = pygame.transform.smoothscale(o,
-            ((sirka_okna-30)/x_max, (vyska_okna-30)/y_max)
-    )
+            raw_surface_object[a % pocet_obrazku_tycinek],
+            ((180/19)*3*a)
+        )
+    o = pygame.transform.smoothscale(
+            o,
+            ((sirka_okna-30)/x_max,
+            (vyska_okna-30)/y_max)
+        )
     stick_surface_object.append(o)
 
 # Hlavní iterace - každý cyklus je jeden krok
@@ -220,7 +229,7 @@ while True:
             way = 3
         elif ((x == oldx-1) or (x == oldx+(x_max-1))):
             way = 1
-        elif ((y == oldy+1) or (y == oldy-(y_max-1))):
+        pyelif ((y == oldy+1) or (y == oldy-(y_max-1))):
             way = 2
         elif ((y == oldy-1) or (y == oldy+(y_max-1))):
             way = 0
