@@ -122,7 +122,7 @@ save = False
 for a in range(0, pocet_mravencu):
     x = randint(1, x_max)
     y = randint(1, y_max)
-    pole_mravencu.append(mravenec(x, y))
+    pole_mravencu.append(Mravenec(x, y))
 
 # Generuji pole tyčinek
 for ve_sloupci in range(0, y_max):
