@@ -93,9 +93,7 @@ class Mravenec:
         pozice = self.rekni_pozici()
         tycinky_tady = pole_tycinek[pozice[1]-1][pozice[0]-1]
 
-        if tycinky_tady == 0:
-            pass
-        else:
+        if tycinky_tady != 0:
             if self.ma_tycinku:
                 self.ma_tycinku = False
                 pole_tycinek[pozice[1]-1][pozice[0]-1] += 1
