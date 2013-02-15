@@ -227,7 +227,7 @@ while True:
             way = 3
         elif ((x == oldx-1) or (x == oldx+(x_max-1))):
             way = 1
-        pyelif ((y == oldy+1) or (y == oldy-(y_max-1))):
+        elif ((y == oldy+1) or (y == oldy-(y_max-1))):
             way = 2
         elif ((y == oldy-1) or (y == oldy+(y_max-1))):
             way = 0
