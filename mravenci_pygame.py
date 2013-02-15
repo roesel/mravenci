@@ -15,7 +15,7 @@ lastposrand = firstposrand
 
 pocet_nahodnych_cisel = 0
 
-f = open("rnd.txt")  # Otevírám soubor ze kterého budu číst
+f = open('rnd.txt')  # Otevírám soubor ze kterého budu číst
 for line in f.readlines():
     randomlist.append(int(line))
     pocet_nahodnych_cisel += 1
@@ -38,41 +38,41 @@ def nahodne_cislo():
 # Definice třídy mravence
 class Mravenec:
     def __init__(self, x, y):
-        '''Konstruktor, mravenec dostane souřadnice narození.'''
+        """Konstruktor, mravenec dostane souřadnice narození."""
         self.x = x
         self.y = y
         self.ma_tycinku = False
 
     def rekni_pozici(self):
-        '''Mravenec vrátí svojí aktuální pozici.'''
+        """Mravenec vrátí svojí aktuální pozici."""
         return [self.x, self.y]
 
     def rekni_pozici_x(self):
-        '''Mravenec vrátí svojí aktuální pozici X.'''
+        """Mravenec vrátí svojí aktuální pozici X."""
         return self.x
 
     def rekni_pozici_y(self):
-        '''.Mravenec vrátí svojí aktuální pozici Y.'''
+        """.Mravenec vrátí svojí aktuální pozici Y."""
         return self.y
 
     def soused(self, coords, smer):
-        '''Vrací vedlejší poličko z aktuálních souřadnic [coords]
-           ve směru [smer]. (Zajišťuje zacyklování pole.)'''
+        """Vrací vedlejší poličko z aktuálních souřadnic [coords]
+           ve směru [smer]. (Zajišťuje zacyklování pole.)"""
         x = coords[0]
         y = coords[1]
-        if smer == "d":
+        if smer == 'd':
             if y == 1:
                 y = y_max+1
             y -= 1
-        elif smer == "u":
+        elif smer == 'u':
             if y == y_max:
                 y = 0
             y += 1
-        elif smer == "l":
+        elif smer == 'l':
             if x == 1:
                 x = x_max+1
             x -= 1
-        elif smer == "r":
+        elif smer == 'r':
             if x == x_max:
                 x = 0
             x += 1
@@ -80,16 +80,16 @@ class Mravenec:
         return [x, y]
 
     def pohni_se(self):
-        '''Nechá mravence udělat jeden krok pseudonáhodným směrem.'''
+        """Nechá mravence udělat jeden krok pseudonáhodným směrem."""
         smer = nahodne_cislo()
-        smery = ["u", "d", "l", "r"]
+        smery = ['u', 'd', 'l', 'r']
         newc = self.soused(self.rekni_pozici(), smery[smer])
         self.x = newc[0]
         self.y = newc[1]
         self.uvazuj_nad_tycinkou()
 
     def uvazuj_nad_tycinkou(self):
-        '''Řeší mravencovu interakci s kupičkou tyčinek, kterou (ne)našel.'''
+        """Řeší mravencovu interakci s kupičkou tyčinek, kterou (ne)našel."""
         pozice = self.rekni_pozici()
         tycinky_tady = pole_tycinek[pozice[1]-1][pozice[0]-1]
 
@@ -100,6 +100,7 @@ class Mravenec:
             else:
                 self.ma_tycinku = True
                 pole_tycinek[pozice[1]-1][pozice[0]-1] -= 1
+
 
 # Definice neznámých
 pole_tycinek = []  # Dvourozměrné pole
