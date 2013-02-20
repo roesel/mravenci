@@ -107,14 +107,14 @@ pole_tycinek = []  # Dvourozměrné pole
 pole_mravencu = []  # Jednorozěrné pole
 
 # Rozměry pole
-x_max = 50
-y_max = 50
+x_max = 10
+y_max = 10
 
 # Parametry simulace
-pocet_mravencu = 199
-pocet_tycinek = 200
+pocet_mravencu = 10
+pocet_tycinek = 22
 pocet_obrazku_tycinek = 3
-fps = 60
+fps = 10
 sirka_okna = 600
 vyska_okna = 600
 save = False
